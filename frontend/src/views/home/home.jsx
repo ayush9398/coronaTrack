@@ -4,7 +4,8 @@ import axios from "axios";
 import comma from "comma-number";
 import coronaIcon from "../../assets/coronavirus.png";
 import IndiaMap from "../../components/IndiaMap";
-import "./styles.css";
+import "./styles.css";  
+import StatsBar from "../../components/statsBar";
 
 const Home = () => {
   const [stateData, setStateData] = useState([]);
@@ -24,14 +25,22 @@ const Home = () => {
         });
   }, []);
 
-  console.log(stateData);
   return (
     <div className="homeContainer">
       <div className="titleBar">
         <img src={coronaIcon} className="coronaIcon" />
         coronaTrack
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      {stateData.length > 0 && (
+        <>
+          <StatsBar
+            active={stateData[stateData.length - 1].active}
+            cured={stateData[stateData.length - 1].cured}
+            deaths={stateData[stateData.length - 1].death}
+          />
+        </>
+      )}
+      <div style={{ display: "flex", justifyContent: "center", gap: "120px" }}>
         <div style={{ height: "800px", marginLeft: "20px" }}>
           <IndiaMap className="svgMap" setActiveState={setCurrentActiveState} />
         </div>

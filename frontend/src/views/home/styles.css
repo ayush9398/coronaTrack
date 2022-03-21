@@ -47,4 +47,56 @@
 
 .currStateInfo{
   font-size: 16px;
+  
+}
+
+.stateName{
+  font-weight: bold;
+}
+
+.stateActive{
+  font-weight: bold;
+  color: grey;
+}
+
+.statePositive{
+  font-weight: bold;
+  color: orange;
+}
+
+.stateCured{
+  font-weight: bold;
+  color: green;
+}
+
+.stateDeath{
+  font-weight: bold;
+  color: red;
+}
+
+.statsBar{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.statsBar>.statsCard{
+  width: 300px;
+  padding: 16px;
+}
+
+.statsCard{
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.statsBar>.statsCard>.title{
+  font-size: 12px;
+  color: gray;
+}
+
+.statsBar>.statsCard>.data{
+  font-size: 24px;
+  font-weight: bold;
 }

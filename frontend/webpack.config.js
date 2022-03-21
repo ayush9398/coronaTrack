@@ -26,11 +26,20 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"],
-              },
-              {
+            },
+            {
                 test: /\.png|svg|jpg|gif$/,
                 use: ["file-loader"],
-              }, 
+            },
+            {
+                test: /\.less$/i,
+                use: [
+                    // compiles Less to CSS
+                    "style-loader",
+                    "css-loader",
+                    "less-loader",
+                ],
+            },
         ]
     }
 };
