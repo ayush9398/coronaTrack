@@ -1,9 +1,11 @@
 import React from "react";
+import Home from "./views/home";
+import 'antd/dist/antd.css';
 
-const App = () =>(
-    <div>
-        <h1>Corona Track</h1>
-    </div>
+const App = () => (
+  <div>
+    <Home />
+  </div>
 );
 
 export default App;

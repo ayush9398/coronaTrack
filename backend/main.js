@@ -1,13 +1,15 @@
 const express = require("express");
 const fs = require("fs");
 const axios = require("axios");
+const cors = require('cors')
 
 const DATA_JSON = "myfile.json";
 const DATA_FETCH_URI = "https://www.mohfw.gov.in/data/datanew.json";
 
 const app = express();
-const port = 3000;
+const port = 8000;
 
+app.use(cors())
 let stateData = [];
 
 const getDataFromJSON = async () => {

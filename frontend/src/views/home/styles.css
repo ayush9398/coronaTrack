@@ -1,0 +1,50 @@
+
+.titleBar {
+  display: flex;
+  justify-content: center;
+  font-size: 32px;
+  font-family: sans-serif;
+  height: 100px;
+  padding: 20px;
+}
+
+.svgMap{
+    height: 100%;
+    width: 100%;
+}
+
+.svgMap > path {
+  fill: rgb(224, 101, 101);
+}
+
+.svgMap > path:hover {
+  fill: aliceblue;
+  stroke: black;
+}
+
+.mapInfoCardWrapper{
+  width: 400px;
+  height: 300px;
+  padding: 18px;
+  margin: 80px;
+}
+
+.mapInfoCard{
+  min-height: 200px;
+}
+
+.coronaIcon{
+  animation: mymove 10s infinite;
+  animation-timing-function: linear; 
+  margin: 0 8px;
+}
+
+
+@keyframes mymove {
+  0%{transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+
+.currStateInfo{
+  font-size: 16px;
+}
