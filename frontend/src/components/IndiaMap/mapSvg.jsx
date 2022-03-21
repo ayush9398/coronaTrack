@@ -2,7 +2,6 @@ import React from "react";
 
 const MapSvg = ({ height, width, className, setActiveState }) => {
   const handleActiveElement = (event) => {
-    console.log(event.target.id);
     if (event.target.id === "svg2") {
       setActiveState();
     } else {
@@ -13,7 +12,7 @@ const MapSvg = ({ height, width, className, setActiveState }) => {
   return (
     <svg
       id="svg2"
-      viewBox="0 0 1000 1200"
+      viewBox="-100 0 1100 1200"
       className={className}
       onMouseOver={handleActiveElement}
     >

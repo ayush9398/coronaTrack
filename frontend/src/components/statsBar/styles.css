@@ -40,3 +40,18 @@
   font-weight: bold;
   color: red;
 }
+
+
+@media (max-width: 800px) {
+  .statsBar {
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    margin: 24px 20px;
+    margin-bottom: 40px;
+  }
+
+  .statsBar > .statsCard {
+    width: 100%;
+  }
+}

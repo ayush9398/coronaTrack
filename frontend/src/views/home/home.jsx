@@ -1,14 +1,51 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "antd";
+import { Card, Table } from "antd";
 import axios from "axios";
 import comma from "comma-number";
 import coronaIcon from "../../assets/coronavirus.png";
 import IndiaMap from "../../components/IndiaMap";
-import "./styles.css";  
+import "./styles.css";
 import StatsBar from "../../components/statsBar";
+
+const tableColumns = [
+  {
+    title: "State name",
+    dataIndex: "name",
+    key: "name",
+    sorter: (a, b) => {
+      if (a === b) {
+        return 0;
+      }
+
+      if (a > b) {
+        return 1;
+      }
+
+      return -1;
+    },
+    width: "40%",
+  },
+
+  {
+    title: "Active Cases",
+    dataIndex: "active",
+    key: "active",
+  },
+  {
+    title: "Cured Cases",
+    dataIndex: "cured",
+    key: "cured",
+  },
+  {
+    title: "Deaths",
+    dataIndex: "deaths",
+    key: "deaths",
+  },
+];
 
 const Home = () => {
   const [stateData, setStateData] = useState([]);
+  const [tableData, setTableData] = useState([]);
   const [currentActiveState, setCurrentActiveState] = useState();
   const [error, setError] = useState(false);
 
@@ -18,6 +55,16 @@ const Home = () => {
         .get("http://localhost:8000/get_state_data")
         .then((res) => {
           setStateData(res.data);
+          setTableData(
+            res.data
+              .filter((_, index) => index !== 36)
+              .map((data) => ({
+                name: data.state_name,
+                active: data.active,
+                cured: data.cured,
+                deaths: data.death,
+              }))
+          );
         })
         .catch((err) => {
           console.log(err);
@@ -40,8 +87,8 @@ const Home = () => {
           />
         </>
       )}
-      <div style={{ display: "flex", justifyContent: "center", gap: "120px" }}>
-        <div style={{ height: "800px", marginLeft: "20px" }}>
+      <div className="lowerSection">
+        <div className="mapWrapper">
           <IndiaMap className="svgMap" setActiveState={setCurrentActiveState} />
         </div>
         <div className="mapInfoCardWrapper">
@@ -87,6 +134,17 @@ const Home = () => {
             )}
           </Card>
         </div>
+      </div>
+      <div style={{ margin: "32px" }}>
+        <div>State wise Metrics</div>
+        <Table
+          dataSource={tableData}
+          columns={tableColumns}
+          // onChange={(changedData) => {
+          //   console.log(changedData);
+          //   setTableData(changedData);
+          // }}
+        />
       </div>
     </div>
   );
