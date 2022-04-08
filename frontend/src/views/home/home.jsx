@@ -92,7 +92,7 @@ const Home = () => {
           <IndiaMap className="svgMap" setActiveState={setCurrentActiveState} />
         </div>
         <div className="mapInfoCardWrapper">
-          <Card title="Map Guide" className="mapInfoCard">
+          <div className="mapInfoCard">
             {currentActiveState ? (
               <div
                 key={stateData[currentActiveState - 1].state_code}
@@ -132,7 +132,7 @@ const Home = () => {
             ) : (
               <div>Hover on a state, to look for it's info</div>
             )}
-          </Card>
+          </div>
         </div>
       </div>
       <div style={{ margin: "32px" }}>

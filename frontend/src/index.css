@@ -1,0 +1,23 @@
+body {
+  background-image: linear-gradient(to right, #5795f0, #fbc8d4);
+  background-size: 200%;
+  animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0;
+  }
+  25% {
+    background-position: 50%;
+  }
+  50% {
+    background-position: 100%;
+  }
+  75% {
+    background-position: 50%;
+  }
+  100% {
+    background-position: 0;
+  }
+}
