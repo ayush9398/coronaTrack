@@ -1,3 +1,9 @@
+.homeContainer{
+  background-image: linear-gradient(to bottom, #FF9933, #FFFFFF, #138808);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
 .titleBar {
   display: flex;
   justify-content: center;
@@ -75,22 +81,28 @@
 
 .stateActive {
   font-weight: bold;
-  color: grey;
+  color: black;
 }
 
 .statePositive {
   font-weight: bold;
   color: orange;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
 }
 
 .stateCured {
   font-weight: bold;
-  color: green;
+  color: #3cd070;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
 }
 
 .stateDeath {
   font-weight: bold;
   color: red;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
 }
 
 .lowerSection {

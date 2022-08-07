@@ -22,23 +22,28 @@
 }
 
 .statsBar > .statsCard > .data {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
+   /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
 }
 
 .statePositive {
   font-weight: bold;
-  color: orange;
+  -webkit-text-fill-color: orange;
 }
 
 .stateCured {
   font-weight: bold;
   color: green;
+  -webkit-text-fill-color: green;
 }
 
 .stateDeath {
   font-weight: bold;
   color: red;
+  -webkit-text-fill-color: red;
 }
 
 
