@@ -43,6 +43,9 @@ const tableColumns = [
   },
 ];
 
+const DATA_JSON = "myfile.json";
+const DATA_FETCH_URI = "https://www.mohfw.gov.in/data/datanew.json";
+
 const Home = () => {
   const [stateData, setStateData] = useState([]);
   const [tableData, setTableData] = useState([]);
@@ -50,27 +53,48 @@ const Home = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (stateData.length === 0)
-      axios
-        .get("http://localhost:8000/get_state_data")
-        .then((res) => {
-          setStateData(res.data);
-          setTableData(
-            res.data
-              .filter((_, index) => index !== 36)
-              .map((data) => ({
-                name: data.state_name,
-                active: data.active,
-                cured: data.cured,
-                deaths: data.death,
-              }))
-          );
-        })
-        .catch((err) => {
-          console.log(err);
-          setError(true);
-        });
-  }, []);
+    let data;
+    if (stateData.length === 0) {
+      if (localStorage.getItem("data"))
+        data = localStorage.getItem("data");
+      let dataJson = data ? JSON.parse(data) : {};
+      console.log({ dataJson });
+      const d = new Date();
+      const currDate = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+      if (dataJson["date"] !== currDate) {
+        let currStateData = [];
+        axios
+          .get(DATA_FETCH_URI)
+          .then((res) => {
+            currStateData = res.data;
+            setStateData(currStateData);
+            dataJson = {
+              date: currDate,
+              stateData: currStateData,
+            };
+            localStorage.setItem("data", JSON.stringify(dataJson))
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+
+      }
+      else {
+        setStateData(dataJson.stateData)
+      }
+
+      setTableData(
+        dataJson.stateData
+          .filter((_, index) => index !== 36)
+          .map((data) => ({
+            name: data.state_name,
+            active: data.active,
+            cured: data.cured,
+            deaths: data.death,
+          }))
+      );
+    }
+  }, [stateData]);
 
   return (
     <div className="homeContainer">
@@ -78,6 +102,7 @@ const Home = () => {
         <img src={coronaIcon} className="coronaIcon" />
         coronaTrack
       </div>
+      <p style={{ margin: "20px", fontSize: "20px" }}>Hey! This is a fun project where I was trying out few things I learned over time, let me know what you think about this. Cheers!</p>
       {stateData.length > 0 && (
         <>
           <StatsBar
@@ -87,6 +112,8 @@ const Home = () => {
           />
         </>
       )}
+      <p style={{ margin: "20px" }}>This map uses Event bubbling in order to have a single function handling the hover event over any state. Also, using the localstorage to store the data for one time call. If user request info on any other date, then the site makes a call and updates data in local storage so only one call is made per day per user. Still experimenting with few things!</p>
+
       <div className="lowerSection">
         <div className="mapWrapper">
           <IndiaMap className="svgMap" setActiveState={setCurrentActiveState} />
@@ -140,10 +167,10 @@ const Home = () => {
         <Table
           dataSource={tableData}
           columns={tableColumns}
-          // onChange={(changedData) => {
-          //   console.log(changedData);
-          //   setTableData(changedData);
-          // }}
+        // onChange={(changedData) => {
+        //   console.log(changedData);
+        //   setTableData(changedData);
+        // }}
         />
       </div>
     </div>

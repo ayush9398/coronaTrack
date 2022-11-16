@@ -12,13 +12,13 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: "./src/index.html",
     }),
-    new WorkboxPlugin.InjectManifest({
-      swSrc: path.join(process.cwd(), "/src/SWcache.js"),
-      swDest: "service-worker.js",
-      dontCacheBustURLsMatching: /\.[0-9a-f]{8}\./,
-      exclude: [/\.map$/, /asset-manifest\.json$/, /LICENSE/],
-      maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
-    }),
+    // new WorkboxPlugin.InjectManifest({
+    //   swSrc: path.join(process.cwd(), "/src/SWcache.js"),
+    //   swDest: "service-worker.js",
+    //   dontCacheBustURLsMatching: /\.[0-9a-f]{8}\./,
+    //   exclude: [/\.map$/, /asset-manifest\.json$/, /LICENSE/],
+    //   maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+    // }),
   ],
   resolve: {
     modules: [__dirname, "src", "node_modules"],
