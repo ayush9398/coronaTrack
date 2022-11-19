@@ -45,7 +45,7 @@ const getDataFromJSON = async () => {
   stateData = dataJson["stateData"];
 };
 
-await getDataFromJSON();
+getDataFromJSON();
 
 app.get("/get_state_data", async (req, res) => {
   await getDataFromJSON();
