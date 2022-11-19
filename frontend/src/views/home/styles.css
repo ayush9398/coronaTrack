@@ -113,7 +113,7 @@
 
 @media (max-width: 800px) {
   .lowerSection {
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 0px;
   }
 }
