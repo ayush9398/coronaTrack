@@ -12,13 +12,14 @@
 }
 
 .statsCard {
+  background: rgba(0,0,0,0.5);
   border: 1px solid black;
   border-radius: 8px;
 }
 
 .statsBar > .statsCard > .title {
   font-size: 12px;
-  color: gray;
+  color: wheat;
 }
 
 .statsBar > .statsCard > .data {
